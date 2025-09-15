@@ -18,11 +18,11 @@ jobs:
           sudo apt-get install -y build-essential clang flex bison gawk \
             libncurses-dev gettext unzip zlib1g-dev libssl-dev python3 file wget
 
-- name: Download OpenWrt SDK
-  run: |
-    wget https://archive.openwrt.org/releases/24.10.0-rc2/targets/qualcommax/ipq807x/openwrt-sdk-24.10.0-rc2-qualcommax-ipq807x_gcc-13.3.0_musl.Linux-x86_64.tar.zst
-    tar -xJf openwrt-sdk-24.10.0-rc2-qualcommax-ipq807x_gcc-13.3.0_musl.Linux-x86_64.tar.zst
-    mv openwrt-sdk-24.10.0-rc2-qualcommax-ipq807x_gcc-13.3.0_musl.Linux-x86_64 openwrt-sdk
+      - name: Download OpenWrt SDK
+        run: |
+          wget https://archive.openwrt.org/releases/24.10.0-rc2/targets/qualcommax/ipq807x/openwrt-sdk-24.10.0-rc2-qualcommax-ipq807x_gcc-13.3.0_musl.Linux-x86_64.tar.zst
+          tar -xJf openwrt-sdk-24.10.0-rc2-qualcommax-ipq807x_gcc-13.3.0_musl.Linux-x86_64.tar.zst
+          mv openwrt-sdk-24.10.0-rc2-qualcommax-ipq807x_gcc-13.3.0_musl.Linux-x86_64 openwrt-sdk
 
       - name: Fetch qfirehose sources
         run: |
