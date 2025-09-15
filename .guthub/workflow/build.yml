@@ -1,0 +1,32 @@
+name: Build qfirehose IPK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download OpenWrt SDK
+        run: |
+          wget https://downloads.openwrt.org/releases/24.05.0/targets/mediatek/filogic/openwrt-sdk-24.05.0-mediatek-filogic_gcc-12.3.0_musl.Linux-x86_64.tar.xz
+          tar -xf openwrt-sdk-*.tar.xz
+          mv openwrt-sdk-* openwrt-sdk
+      - name: Build qfirehose
+        run: |
+          cd openwrt-sdk
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+          cp -r ../qfirehose package/qfirehose
+          make defconfig
+          make package/qfirehose/compile V=s
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ipk-packages
+          path: openwrt-sdk/bin/packages/**/*.ipk
