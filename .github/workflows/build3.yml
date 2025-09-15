@@ -28,8 +28,8 @@ jobs:
         run: |
           git clone https://github.com/nippynetworks/qfirehose /tmp/qfirehose-src
           mkdir -p openwrt-sdk/package/custom
-          cp -r /tmp/qfirehose-src/qfirehose openwrt-sdk/package/custom/
-          cp -r /tmp/qfirehose-src/luci-app-qfirehose openwrt-sdk/package/custom/
+          cp -r /tmp/qfirehose-src/package/qfirehose openwrt-sdk/package/custom/
+          cp -r /tmp/qfirehose-src/package/luci-app-qfirehose openwrt-sdk/package/custom/
 
       - name: Prepare SDK
         run: |
